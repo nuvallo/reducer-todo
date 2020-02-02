@@ -1,4 +1,5 @@
 import React, { useState, useReducer } from "react";
+import { TodoForm } from "./components/TodoForm";
 import "./App.css";
 import { reducer, initialState } from "./reducers/todoReducer";
 
@@ -30,6 +31,7 @@ function App() {
           <h1 key={todo.id}>{todo.name}</h1>
         ))}
       </header>
+      <TodoForm />
     </div>
   );
 }
