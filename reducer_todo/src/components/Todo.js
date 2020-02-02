@@ -10,7 +10,7 @@ export function Todo(props) {
           props.handleComplete(props.item.id);
         }}
       >
-        {props.item.todo} >
+        {props.item.todo}
       </h2>
     </div>
   );

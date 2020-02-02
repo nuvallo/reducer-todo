@@ -1,7 +1,11 @@
-import React, { useState, useReducer } from "react";
-import { TodoForm } from "./components/TodoForm";
+import React, { useReducer } from "react";
+
 import "./App.css";
-import { reducer, initialState } from "./reducers/todoReducer";
+
+import { TodoForm } from "./components/TodoForm";
+import { TodoList } from "./components/TodoList";
+
+import { initialState, reducer } from "./reducers/todoReducer";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -15,23 +19,28 @@ function App() {
 
     dispatch({ type: "ADD_TODO", payload: newTodo });
   };
-
   const handleComplete = id => {
     dispatch({ type: "COMPLETED_TODO", payload: id });
   };
 
   const clearComplete = id => {
-    dispatch({ type: "CLEAR_COMPLETED", payload: id });
+    dispatch({ type: "CLEAR_COMPLETED" });
   };
 
   return (
     <div className="App">
-      <header>
-        {state.map(todo => (
-          <h1 key={todo.id}>{todo.name}</h1>
-        ))}
+      <header className="App-header">
+        <TodoForm addTodo={addTodo} />
+        <TodoList state={state} handleComplete={handleComplete} />
+        <button
+          onClick={e => {
+            e.preventDefault();
+            clearComplete();
+          }}
+        >
+          Clear Todo
+        </button>
       </header>
-      <TodoForm />
     </div>
   );
 }
