@@ -1,10 +1,8 @@
 import React, { useReducer } from "react";
-
 import "./App.css";
-
+import Navigation from "./components/Navigation";
 import { TodoForm } from "./components/TodoForm";
 import { TodoList } from "./components/TodoList";
-
 import { initialState, reducer } from "./reducers/todoReducer";
 
 function App() {
@@ -29,6 +27,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navigation />
       <header className="App-header">
         <TodoForm addTodo={addTodo} />
         <TodoList state={state} handleComplete={handleComplete} />
